@@ -11,6 +11,7 @@ import SwiftUI
 struct Information: View {
     
     var dataRepo: dbRepo
+
     @State var selection = 0
     private let items: [String] = ["Personal", "Student"]
     
@@ -23,9 +24,9 @@ struct Information: View {
                             }
                         }.pickerStyle(SegmentedPickerStyle())
                         if selection == 0 {
-                            PersonalTab(user: dataRepo.student!)
+                            PersonalTab(dataRepo: dataRepo)
                         } else {
-                            StudentTab(user: dataRepo.student!)
+                            StudentTab(dataRepo: dataRepo)
                         }
                         Spacer(minLength: 0)
                     }

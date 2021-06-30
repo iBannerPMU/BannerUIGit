@@ -3,7 +3,7 @@ import FirebaseAuth
 
 struct StudentHomePage: View {
     
-    var dataRepo = dbRepo()
+    @ObservedObject var dataRepo : dbRepo
     @State var showView : String? = nil
 
     var body: some View {
@@ -13,6 +13,7 @@ struct StudentHomePage: View {
                 NavigationLink(destination: Information(dataRepo: dataRepo)){
                     Text("Information")
                 }
+                if((dataRepo.student) != nil){
                 NavigationLink(destination: Registeration(dataRepo: dataRepo)){
                     Text("Registeration")
                 }
@@ -21,9 +22,12 @@ struct StudentHomePage: View {
                 }
                 NavigationLink(destination: StudentRecords()){
                     Text("Student Records")
+                    }
                 }
+                if((dataRepo.admin) != nil){
                 NavigationLink(destination: CreateStudent(repo: dataRepo)){
                     Text("Create Student")
+                    }
                 }
                 NavigationLink(destination: SignInAuth(dataRepo: dataRepo, any: $showView), tag:"Login", selection: $showView) {
                 }
@@ -45,7 +49,13 @@ struct StudentHomePage: View {
             if Auth.auth().currentUser == nil {
                 self.showView = "Login"
             } else {
-                print("Logged in")
+                if((dataRepo.student) != nil || (dataRepo.admin) != nil ){
+                    print("Data existed, Logged in")
+                }
+                else {
+                    print("Getting Data")
+                    dataRepo.getData()
+                }
             }
         }
     }

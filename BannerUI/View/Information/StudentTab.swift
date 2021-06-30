@@ -20,18 +20,31 @@ class studentInfoModel: ObservableObject {
 
 struct StudentTab: View {
     
-    @ObservedObject var user: Student
+    @ObservedObject var dataRepo: dbRepo
 
     var body: some View {
         
         VStack {
             
-            Text(user.fullName)
-            Text(user.universityID)
-            Text(user.universityEmail)
-            Text(user.startLevel)
-            Text(user.startMajor)
-            Text(user.startingYear)
+            if((dataRepo.student) != nil){
+                let user = dataRepo.student! as Student
+                Text(user.fullName)
+                Text(user.universityID)
+                Text(user.universityEmail)
+                Text(user.startLevel)
+                Text(user.startMajor)
+                Text(user.startingYear)
+            } else {
+                let user = dataRepo.admin! as Admin
+                Text(user.fullName)
+//                Text(user.universityID)
+//                Text(user.universityEmail)
+//                Text(user.startLevel)
+//                Text(user.startMajor)
+//                Text(user.startingYear)
+            }
+            
+            
             
         }
     }

@@ -20,17 +20,29 @@ import FirebaseAuth
 
 struct PersonalTab: View {
     
-    @ObservedObject var user: Student
+    @ObservedObject var dataRepo: dbRepo
     
     var body: some View {
         //List(viewModel.studentInfo) { studentInformation in
             VStack {
                 
-                Text(user.fullName)
-                Text(user.nationalID)
-                Text(user.dateOfBirth)
-                Text(user.email)
-                Text(user.phoneNumber)
+                if((dataRepo.student) != nil){
+                    let user = dataRepo.student! as Student
+                    Text(user.fullName)
+                    Text(user.nationalID)
+                    Text(user.dateOfBirth)
+                    Text(user.email)
+                    Text(user.phoneNumber)
+                } else if ((dataRepo.admin) != nil){
+                    let user = dataRepo.admin! as Admin
+                    Text(user.fullName)
+//                    Text(user.nationalID)
+//                    Text(user.dateOfBirth)
+//                    Text(user.email)
+//                    Text(user.phoneNumber)
+                }
+                
+
                 
             }
         }
