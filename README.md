@@ -1,4 +1,5 @@
 1- Setup "faculty" class and create a login page for faculty that has:
+
 	a. His information
 	b. Add small grading system
 	c. Show enrolled courses
