@@ -17,6 +17,7 @@ struct CreateStudent: View {
     @State var startingYear : String = ""
     @State var universityEmail : String = ""
     
+    
     var body: some View {
         
         VStack {
@@ -37,6 +38,7 @@ struct CreateStudent: View {
             
             let user = Student(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, nationalID: nationalID, startLevel: startLevel, startMajor: startMajor, startingYear: startingYear, universityID: universityID, universityEmail: universityEmail)
             repo.addData(user: user)
+            
             print("added")
         }) {
             

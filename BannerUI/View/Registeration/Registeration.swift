@@ -23,7 +23,7 @@ struct Registeration: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 if selection == 0 {
                     //BrowseClasses(courses: dataRepo.course!)
-                    BrowseClasses(courses: dataRepo.courseArray, stringArray: dataRepo.emptyCourseArray)
+                    BrowseClasses(courses: dataRepo.courseArray, stringArray: dataRepo.emptyCourseArray, dataRepo: dataRepo)
                 } else if selection == 1 {
                     ShowMajors(dataRepo: dataRepo)
                 } else {

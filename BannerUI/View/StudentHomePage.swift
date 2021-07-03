@@ -28,7 +28,12 @@ struct StudentHomePage: View {
                 NavigationLink(destination: CreateStudent(repo: dataRepo)){
                     Text("Create Student")
                     }
+                    NavigationLink(destination: CreateSections(dataRepo: dataRepo)){
+                    Text("Add Sections")
+                    }.onDisappear{dataRepo.getCourses()}
+
                 }
+                
                 NavigationLink(destination: SignInAuth(dataRepo: dataRepo, any: $showView), tag:"Login", selection: $showView) {
                 }
                 

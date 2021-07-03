@@ -12,6 +12,7 @@ class Financial : ObservableObject, Identifiable, Codable {
     var semesterPayment : String = ""
     var Locker : String = ""
     var copyCenter : String = ""
+    var payedAmount : String = ""
     
     init(semesterPayment : String) {
         self.semesterPayment = semesterPayment
@@ -24,9 +25,15 @@ class Financial : ObservableObject, Identifiable, Codable {
     init(copyCenter : String) {
         self.copyCenter = copyCenter
     }
-    init(semesterPayment : String, Locker : String, copyCenter : String) {
+    
+    init(payedAmount : String) {
+        self.payedAmount = payedAmount
+    }
+    
+    init(semesterPayment : String, Locker : String, copyCenter : String, payedAmount : String) {
         self.semesterPayment = semesterPayment
         self.Locker = Locker
         self.copyCenter = copyCenter
+        self.payedAmount = payedAmount
     }
 }

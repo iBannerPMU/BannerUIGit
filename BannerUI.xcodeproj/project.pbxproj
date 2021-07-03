@@ -14,10 +14,12 @@
 		FA1C242B2618C3B9003D0660 /* RegisterCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C242A2618C3B9003D0660 /* RegisterCart.swift */; };
 		FA1C24332618DDDC003D0660 /* TempRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C24322618DDDC003D0660 /* TempRegister.swift */; };
 		FA2B91B925FBF3F200A8540C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B91B825FBF3F200A8540C /* LoginViewModel.swift */; };
+		FA2CF595268E09300056B4DE /* GradingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CF594268E09300056B4DE /* GradingCalculator.swift */; };
 		FA3A9E55261074840091043C /* Faculty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E54261074840091043C /* Faculty.swift */; };
 		FA3A9E5D261079A10091043C /* CreateStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E5C261079A10091043C /* CreateStudent.swift */; };
 		FA3A9E62261080100091043C /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E61261080100091043C /* AdminHomePage.swift */; };
 		FA3F658F261333920062CF2F /* ShowMajors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F658E261333920062CF2F /* ShowMajors.swift */; };
+		FA54FEAF268FD14E0099686D /* CreateCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54FEAE268FD14E0099686D /* CreateCourse.swift */; };
 		FA97A0E925FF8E6A003B24CB /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97A0E825FF8E6A003B24CB /* Admin.swift */; };
 		FA97CA0D25FA2D19002147CA /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA0C25FA2D19002147CA /* Information.swift */; };
 		FA97CA2825FA2F8C002147CA /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA2725FA2F8C002147CA /* Student.swift */; };
@@ -25,8 +27,8 @@
 		FA97CA3225FA2FB9002147CA /* Financial.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA3125FA2FB9002147CA /* Financial.swift */; };
 		FA97CA3725FA305E002147CA /* dbRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA3625FA305E002147CA /* dbRepo.swift */; };
 		FA97CA3C25FA32DD002147CA /* PersonalTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA3B25FA32DD002147CA /* PersonalTab.swift */; };
-		FA97CA4425FA3344002147CA /* StudentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA4325FA3344002147CA /* StudentTab.swift */; };
-		FAC3251E26126A9A00565D2F /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3251D26126A9A00565D2F /* Sections.swift */; };
+		FA97CA4425FA3344002147CA /* CollegeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA4325FA3344002147CA /* CollegeTab.swift */; };
+		FAC3251E26126A9A00565D2F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3251D26126A9A00565D2F /* Section.swift */; };
 		FAC3252326132BE400565D2F /* Majors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3252226132BE400565D2F /* Majors.swift */; };
 		FAC32536261331E000565D2F /* BrowseClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC32535261331E000565D2F /* BrowseClasses.swift */; };
 		FAC3253E2613320900565D2F /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3253D2613320900565D2F /* CourseInfo.swift */; };
@@ -80,10 +82,12 @@
 		FA1C242A2618C3B9003D0660 /* RegisterCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCart.swift; sourceTree = "<group>"; };
 		FA1C24322618DDDC003D0660 /* TempRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRegister.swift; sourceTree = "<group>"; };
 		FA2B91B825FBF3F200A8540C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA2CF594268E09300056B4DE /* GradingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCalculator.swift; sourceTree = "<group>"; };
 		FA3A9E54261074840091043C /* Faculty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faculty.swift; sourceTree = "<group>"; };
 		FA3A9E5C261079A10091043C /* CreateStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudent.swift; sourceTree = "<group>"; };
 		FA3A9E61261080100091043C /* AdminHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		FA3F658E261333920062CF2F /* ShowMajors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMajors.swift; sourceTree = "<group>"; };
+		FA54FEAE268FD14E0099686D /* CreateCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCourse.swift; sourceTree = "<group>"; };
 		FA97A0E825FF8E6A003B24CB /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		FA97CA0C25FA2D19002147CA /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		FA97CA2725FA2F8C002147CA /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -91,8 +95,8 @@
 		FA97CA3125FA2FB9002147CA /* Financial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Financial.swift; sourceTree = "<group>"; };
 		FA97CA3625FA305E002147CA /* dbRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbRepo.swift; sourceTree = "<group>"; };
 		FA97CA3B25FA32DD002147CA /* PersonalTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTab.swift; sourceTree = "<group>"; };
-		FA97CA4325FA3344002147CA /* StudentTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTab.swift; sourceTree = "<group>"; };
-		FAC3251D26126A9A00565D2F /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		FA97CA4325FA3344002147CA /* CollegeTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeTab.swift; sourceTree = "<group>"; };
+		FAC3251D26126A9A00565D2F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		FAC3252226132BE400565D2F /* Majors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Majors.swift; sourceTree = "<group>"; };
 		FAC32535261331E000565D2F /* BrowseClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseClasses.swift; sourceTree = "<group>"; };
 		FAC3253D2613320900565D2F /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
@@ -221,8 +225,9 @@
 				FA97CA2C25FA2F9A002147CA /* Course.swift */,
 				FA97CA3125FA2FB9002147CA /* Financial.swift */,
 				FA3A9E54261074840091043C /* Faculty.swift */,
-				FAC3251D26126A9A00565D2F /* Sections.swift */,
+				FAC3251D26126A9A00565D2F /* Section.swift */,
 				FAC3252226132BE400565D2F /* Majors.swift */,
+				FA2CF594268E09300056B4DE /* GradingCalculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			children = (
 				FA3A9E5C261079A10091043C /* CreateStudent.swift */,
 				FAFC6BA6261A55C500674275 /* CreateSections.swift */,
+				FA54FEAE268FD14E0099686D /* CreateCourse.swift */,
 			);
 			path = "Admin Page";
 			sourceTree = "<group>";
@@ -273,7 +279,7 @@
 			children = (
 				FA97CA0C25FA2D19002147CA /* Information.swift */,
 				FA97CA3B25FA32DD002147CA /* PersonalTab.swift */,
-				FA97CA4325FA3344002147CA /* StudentTab.swift */,
+				FA97CA4325FA3344002147CA /* CollegeTab.swift */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -552,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2CF595268E09300056B4DE /* GradingCalculator.swift in Sources */,
 				FAD588D325FABC8D005CB974 /* StudentRecords.swift in Sources */,
 				FAD588A625FABB2D005CB974 /* AcademicTranscript.swift in Sources */,
 				FA3A9E5D261079A10091043C /* CreateStudent.swift in Sources */,
@@ -561,9 +568,10 @@
 				FA97CA3225FA2FB9002147CA /* Financial.swift in Sources */,
 				FA1C242B2618C3B9003D0660 /* RegisterCart.swift in Sources */,
 				FA1C242626152B54003D0660 /* RegisteredCourses.swift in Sources */,
+				FA54FEAF268FD14E0099686D /* CreateCourse.swift in Sources */,
 				FA3F658F261333920062CF2F /* ShowMajors.swift in Sources */,
 				FAC3253E2613320900565D2F /* CourseInfo.swift in Sources */,
-				FA97CA4425FA3344002147CA /* StudentTab.swift in Sources */,
+				FA97CA4425FA3344002147CA /* CollegeTab.swift in Sources */,
 				FA1C24332618DDDC003D0660 /* TempRegister.swift in Sources */,
 				FAD588C025FABB9D005CB974 /* AccountInformation.swift in Sources */,
 				FA97CA3C25FA32DD002147CA /* PersonalTab.swift in Sources */,
@@ -573,7 +581,7 @@
 				FAFC6BA7261A55C500674275 /* CreateSections.swift in Sources */,
 				FAC32536261331E000565D2F /* BrowseClasses.swift in Sources */,
 				FA15165425FB7AE000A70206 /* SignInAuth.swift in Sources */,
-				FAC3251E26126A9A00565D2F /* Sections.swift in Sources */,
+				FAC3251E26126A9A00565D2F /* Section.swift in Sources */,
 				FAEFAA0E25FA288600F8F571 /* SceneDelegate.swift in Sources */,
 				FAD588A125FABB19005CB974 /* ViewHolds.swift in Sources */,
 				FAC3252326132BE400565D2F /* Majors.swift in Sources */,

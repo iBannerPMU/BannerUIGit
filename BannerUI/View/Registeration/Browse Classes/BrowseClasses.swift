@@ -11,14 +11,14 @@ struct BrowseClasses: View {
     
     var courses: [String: Course?]
     var stringArray: [String]
-    
+    var dataRepo: dbRepo
     
     var body: some View {
         
         List {
             Section {
-                ForEach(0 ..< stringArray.count) { index in
-                    NavigationLink(destination: courseInfo(course: courses[stringArray[index]]!!)) {
+                ForEach(0 ..< stringArray.count, id: \.self) { index in
+                    NavigationLink(destination: courseInfo(course: courses[stringArray[index]]!!, dataRepo: dataRepo)) {
                         Text(courses[stringArray[index]]!!.name)
                     }
                 }

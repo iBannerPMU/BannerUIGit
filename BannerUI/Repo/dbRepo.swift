@@ -26,6 +26,7 @@ class dbRepo : ObservableObject {
     @Published var emptyRegisterArray: [String] = []
     @Published var cartArray: [String: Course?] = ["": nil]
     @Published var emptyCartArray: [String] = []
+    @Published var allCourses: [String] = []
     
     
     init() {
@@ -41,6 +42,13 @@ class dbRepo : ObservableObject {
         student = nil
         admin = nil
         course = nil
+        courseArray = ["": nil]
+        emptyCourseArray = []
+        registerArray = ["": nil]
+        emptyRegisterArray = []
+        cartArray = ["": nil]
+        emptyCartArray = []
+        allCourses = []
         
     }
     
@@ -53,7 +61,7 @@ class dbRepo : ObservableObject {
                 self.getStudentData()
                 self.getCourses()
                 self.registerCourses()
-                self.getFinancialData()
+                //self.getFinancialData()
             } else {
                 self.db.collection("Admins").document(self.authRef).getDocument { (doc, err) in
                     if let document = doc, document.exists {
@@ -72,17 +80,7 @@ class dbRepo : ObservableObject {
             if err == nil {
                 do {
                     try! self.db.collection("Students").document(Result!.user.uid).setData(from: user)
-                    
-                    let sPayment = "29000"
-                    let Locker = "150"
-                    let cCenter = "0"
-                    
-                    let financialInfo = Financial(semesterPayment: sPayment, Locker: Locker, copyCenter: cCenter)
-                    do {
-                        try! self.db.collection("Accounts").document(Result!.user.uid).setData(from: financialInfo)
-                    }
                 }
-                //self.db.collection("Students").document(Result!.user.uid).collection("FutureCourses").self
             }
         }
     }
@@ -93,22 +91,22 @@ class dbRepo : ObservableObject {
         
     }
     
-    func getFinancialData() {
-        db.collection("Accounts").document(authRef).addSnapshotListener { (document, error) in
-            if error == nil {
-                if let b = document {
-                    do {
-                        self.financial = try b.data(as: Financial.self)
-                    } catch {
-                        print("a")
-                    }
-                }
-            }
-            else {
-                print(error?.localizedDescription ?? "Error")
-            }
-        }
-    }
+//    func getFinancialData() {
+//        db.collection("Accounts").document(authRef).addSnapshotListener { (document, error) in
+//            if error == nil {
+//                if let b = document {
+//                    do {
+//                        self.financial = try b.data(as: Financial.self)
+//                    } catch {
+//                        print("a")
+//                    }
+//                }
+//            }
+//            else {
+//                print(error?.localizedDescription ?? "Error")
+//            }
+//        }
+//    }
     
     
     func getStudentData() {
@@ -142,6 +140,28 @@ class dbRepo : ObservableObject {
         } 
     }
     
+    func addCourse(Course: Course) {
+        do {
+            _ = try db.collection("Courses").addDocument(from: Course)
+        } catch {
+            print("Error adding course.")
+        }
+    }
+    
+    func addSection(Section: section) {
+        do {
+            let ref = try db.collection("Sections").addDocument(from: Section)
+            updateCourseSections(CourseID: Section.courseID, SectionID: ref.documentID)
+        } catch {
+            print("Error adding sections.")
+        }
+    }
+    
+    func updateCourseSections(CourseID: String, SectionID : String) {
+        let courseDoc = db.collection("Courses").document(CourseID)
+        courseDoc.updateData(["sections" : SectionID])
+    }
+    
     func getAdminData() {
         
         db.collection("Admins").document(authRef).addSnapshotListener { (document, error) in
@@ -155,8 +175,11 @@ class dbRepo : ObservableObject {
                         let fName = data!["fullName"] as? String ?? ""
                         let uID = data!["universityID"] as? String ?? ""
                         let uEmail = data!["universityEmail"] as? String ?? ""
+                        let pNumber = data!["phoneNumber"] as? String ?? ""
+                        let pEmail = data!["email"] as? String ?? ""
                         
-                        let adminInfo = Admin(fullName: fName, universityID: uID, universityEmail: uEmail)
+                        
+                        let adminInfo = Admin(fullName: fName, universityID: uID, universityEmail: uEmail, phoneNumber: pNumber, email: pEmail)
                         self.admin = adminInfo
                     }
                 }
@@ -268,3 +291,14 @@ class dbRepo : ObservableObject {
 //            }
 //        }
 //      }
+
+
+
+//                    let sPayment = "29000"
+//                    let Locker = "150"
+//                    let cCenter = "0"
+//
+//                    let financialInfo = Financial(semesterPayment: sPayment, Locker: Locker, copyCenter: cCenter, payedAmount: pPayment)
+//                    do {
+//                        try! self.db.collection("Accounts").document(Result!.user.uid).setData(financialInfo)
+//                    }

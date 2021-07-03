@@ -10,6 +10,8 @@ import SwiftUI
 struct courseInfo: View {
     
     var course: Course
+    var dataRepo: dbRepo
+    
     
     var body: some View {
         
@@ -29,6 +31,14 @@ struct courseInfo: View {
                 Text("This course is an Elective")
             }
         }.padding()
+        
+        if((dataRepo.admin) != nil) {
+            Button(action: {
+                dataRepo.addSection(Section: section.init(CRN: "111", Instructor: "Someone", InstructorID: "123", sectionNumber: "101", Semester: "Spring", year: "2030", startTime: "15:45", endTime: "20:20", courseID: "Algorithms"))
+            }) {
+                Text("Add Sections")
+            }
+        }
     }
 }
 

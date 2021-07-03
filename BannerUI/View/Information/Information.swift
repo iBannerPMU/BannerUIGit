@@ -13,7 +13,7 @@ struct Information: View {
     var dataRepo: dbRepo
 
     @State var selection = 0
-    private let items: [String] = ["Personal", "Student"]
+    private let items: [String] = ["Personal", "College"]
     
         var body: some View {
             ZStack {
@@ -26,7 +26,7 @@ struct Information: View {
                         if selection == 0 {
                             PersonalTab(dataRepo: dataRepo)
                         } else {
-                            StudentTab(dataRepo: dataRepo)
+                            CollegeTab(dataRepo: dataRepo)
                         }
                         Spacer(minLength: 0)
                     }

@@ -18,7 +18,7 @@ class studentInfoModel: ObservableObject {
     
 }
 
-struct StudentTab: View {
+struct CollegeTab: View {
     
     @ObservedObject var dataRepo: dbRepo
 
@@ -37,11 +37,8 @@ struct StudentTab: View {
             } else {
                 let user = dataRepo.admin! as Admin
                 Text(user.fullName)
-//                Text(user.universityID)
-//                Text(user.universityEmail)
-//                Text(user.startLevel)
-//                Text(user.startMajor)
-//                Text(user.startingYear)
+                Text(user.universityID)
+                Text(user.universityEmail)
             }
             
             

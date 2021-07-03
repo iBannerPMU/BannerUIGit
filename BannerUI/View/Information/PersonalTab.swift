@@ -36,10 +36,10 @@ struct PersonalTab: View {
                 } else if ((dataRepo.admin) != nil){
                     let user = dataRepo.admin! as Admin
                     Text(user.fullName)
-//                    Text(user.nationalID)
-//                    Text(user.dateOfBirth)
-//                    Text(user.email)
-//                    Text(user.phoneNumber)
+                    Text(user.universityEmail)
+                    Text(user.universityID)
+                    Text(user.email)
+                    Text(user.phoneNumber)
                 }
                 
 

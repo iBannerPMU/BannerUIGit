@@ -22,6 +22,7 @@ struct AccountSummery: View {
                 Text(user.financial!.semesterPayment)
                 Text(user.financial!.Locker)
                 Text(user.financial!.copyCenter)
+                Text(user.financial!.payedAmount)
                 
             }
         }

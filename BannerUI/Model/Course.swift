@@ -15,6 +15,7 @@ class Course: ObservableObject, Identifiable, Codable {
     var Major : String = ""
     var hasPreRequisite : Bool = false
     var elective : Bool = false
+    var sections : [String] = []
     
     init(name: String) {
         self.name = name
