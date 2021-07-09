@@ -17,9 +17,9 @@
 		FA2CF595268E09300056B4DE /* GradingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CF594268E09300056B4DE /* GradingCalculator.swift */; };
 		FA3A9E55261074840091043C /* Faculty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E54261074840091043C /* Faculty.swift */; };
 		FA3A9E5D261079A10091043C /* CreateStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E5C261079A10091043C /* CreateStudent.swift */; };
-		FA3A9E62261080100091043C /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A9E61261080100091043C /* AdminHomePage.swift */; };
 		FA3F658F261333920062CF2F /* ShowMajors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F658E261333920062CF2F /* ShowMajors.swift */; };
 		FA54FEAF268FD14E0099686D /* CreateCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54FEAE268FD14E0099686D /* CreateCourse.swift */; };
+		FA763F2D269898A2004A4D5C /* FinishedCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA763F2C269898A2004A4D5C /* FinishedCourses.swift */; };
 		FA97A0E925FF8E6A003B24CB /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97A0E825FF8E6A003B24CB /* Admin.swift */; };
 		FA97CA0D25FA2D19002147CA /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA0C25FA2D19002147CA /* Information.swift */; };
 		FA97CA2825FA2F8C002147CA /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97CA2725FA2F8C002147CA /* Student.swift */; };
@@ -49,8 +49,6 @@
 		FAEFAA1225FA288900F8F571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEFAA1125FA288900F8F571 /* Assets.xcassets */; };
 		FAEFAA1525FA288900F8F571 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEFAA1425FA288900F8F571 /* Preview Assets.xcassets */; };
 		FAEFAA1825FA288900F8F571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEFAA1625FA288900F8F571 /* LaunchScreen.storyboard */; };
-		FAEFAA2325FA288900F8F571 /* BannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFAA2225FA288900F8F571 /* BannerUITests.swift */; };
-		FAEFAA2E25FA288900F8F571 /* BannerUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFAA2D25FA288900F8F571 /* BannerUIUITests.swift */; };
 		FAEFAA4225FA2A0F00F8F571 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEFAA4125FA2A0F00F8F571 /* GoogleService-Info.plist */; };
 		FAFC6BA7261A55C500674275 /* CreateSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFC6BA6261A55C500674275 /* CreateSections.swift */; };
 /* End PBXBuildFile section */
@@ -85,9 +83,9 @@
 		FA2CF594268E09300056B4DE /* GradingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCalculator.swift; sourceTree = "<group>"; };
 		FA3A9E54261074840091043C /* Faculty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faculty.swift; sourceTree = "<group>"; };
 		FA3A9E5C261079A10091043C /* CreateStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudent.swift; sourceTree = "<group>"; };
-		FA3A9E61261080100091043C /* AdminHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		FA3F658E261333920062CF2F /* ShowMajors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMajors.swift; sourceTree = "<group>"; };
 		FA54FEAE268FD14E0099686D /* CreateCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCourse.swift; sourceTree = "<group>"; };
+		FA763F2C269898A2004A4D5C /* FinishedCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedCourses.swift; sourceTree = "<group>"; };
 		FA97A0E825FF8E6A003B24CB /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		FA97CA0C25FA2D19002147CA /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		FA97CA2725FA2F8C002147CA /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -120,11 +118,7 @@
 		FAEFAA1725FA288900F8F571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAEFAA1925FA288900F8F571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAEFAA1E25FA288900F8F571 /* BannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAEFAA2225FA288900F8F571 /* BannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerUITests.swift; sourceTree = "<group>"; };
-		FAEFAA2425FA288900F8F571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAEFAA2925FA288900F8F571 /* BannerUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BannerUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAEFAA2D25FA288900F8F571 /* BannerUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerUIUITests.swift; sourceTree = "<group>"; };
-		FAEFAA2F25FA288900F8F571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAEFAA4125FA2A0F00F8F571 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAFC6BA6261A55C500674275 /* CreateSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSections.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,7 +240,6 @@
 				FA9D3F5225FD461000B02A43 /* Admin Page */,
 				FA15165225FB7AB000A70206 /* Authentication */,
 				FAEFAA0F25FA288600F8F571 /* StudentHomePage.swift */,
-				FA3A9E61261080100091043C /* AdminHomePage.swift */,
 				FAD5889E25FABA54005CB974 /* Information */,
 				FAD5889F25FABA72005CB974 /* Student Records */,
 				FAD588B925FABB5F005CB974 /* Student Accounts */,
@@ -293,6 +286,7 @@
 				FAD588AA25FABB3B005CB974 /* OfficalTranscript.swift */,
 				FAD588AF25FABB4D005CB974 /* EnrollmentVerification.swift */,
 				FAD588B425FABB5A005CB974 /* ClassSchedule.swift */,
+				FA763F2C269898A2004A4D5C /* FinishedCourses.swift */,
 			);
 			path = "Student Records";
 			sourceTree = "<group>";
@@ -322,8 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				FAEFAA0A25FA288600F8F571 /* BannerUI */,
-				FAEFAA2125FA288900F8F571 /* BannerUITests */,
-				FAEFAA2C25FA288900F8F571 /* BannerUIUITests */,
 				FAEFAA0925FA288600F8F571 /* Products */,
 				774D7FF8620C8081D4C641E3 /* Pods */,
 				177F8BE5BD2CF8BC73D05A89 /* Frameworks */,
@@ -363,24 +355,6 @@
 				FAEFAA1425FA288900F8F571 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FAEFAA2125FA288900F8F571 /* BannerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFAA2225FA288900F8F571 /* BannerUITests.swift */,
-				FAEFAA2425FA288900F8F571 /* Info.plist */,
-			);
-			path = BannerUITests;
-			sourceTree = "<group>";
-		};
-		FAEFAA2C25FA288900F8F571 /* BannerUIUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFAA2D25FA288900F8F571 /* BannerUIUITests.swift */,
-				FAEFAA2F25FA288900F8F571 /* Info.plist */,
-			);
-			path = BannerUIUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -568,6 +542,7 @@
 				FA97CA3225FA2FB9002147CA /* Financial.swift in Sources */,
 				FA1C242B2618C3B9003D0660 /* RegisterCart.swift in Sources */,
 				FA1C242626152B54003D0660 /* RegisteredCourses.swift in Sources */,
+				FA763F2D269898A2004A4D5C /* FinishedCourses.swift in Sources */,
 				FA54FEAF268FD14E0099686D /* CreateCourse.swift in Sources */,
 				FA3F658F261333920062CF2F /* ShowMajors.swift in Sources */,
 				FAC3253E2613320900565D2F /* CourseInfo.swift in Sources */,
@@ -586,7 +561,6 @@
 				FAD588A125FABB19005CB974 /* ViewHolds.swift in Sources */,
 				FAC3252326132BE400565D2F /* Majors.swift in Sources */,
 				FAD588CE25FABBD8005CB974 /* RegisterClasses.swift in Sources */,
-				FA3A9E62261080100091043C /* AdminHomePage.swift in Sources */,
 				FAD588AB25FABB3B005CB974 /* OfficalTranscript.swift in Sources */,
 				FAD588B525FABB5A005CB974 /* ClassSchedule.swift in Sources */,
 				FA97A0E925FF8E6A003B24CB /* Admin.swift in Sources */,
@@ -604,7 +578,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEFAA2325FA288900F8F571 /* BannerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +585,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEFAA2E25FA288900F8F571 /* BannerUIUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

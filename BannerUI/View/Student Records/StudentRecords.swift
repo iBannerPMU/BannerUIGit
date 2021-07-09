@@ -1,4 +1,4 @@
-//
+
 //  StudentRecords.swift
 //  BannerUI
 //
@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct StudentRecords: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var dataRepo: dbRepo
+    @State var selection = 0
+    private let items: [String] = ["ViewHolds", "AcademicTranscript", "Class Schedule", "Finished Courses"]
 
-struct StudentRecords_Previews: PreviewProvider {
-    static var previews: some View {
-        StudentRecords()
+    var body: some View {
+        ZStack {
+            VStack {
+                Picker(selection: $selection, label: Text("")) {
+                    ForEach(0..<items.count, id: \.self) { index in
+                        Text(self.items[index]).tag(index)
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                if selection == 0 {
+                    //ViewHolds(dataRepo: dataRepo)
+                } else if selection == 1 {
+                    //AcademicTranscript(dataRepo: dataRepo)
+                } else if selection == 2 {
+                    //ClassSchedule(user: dataRepo.student!)
+                    ClassSchedule(courses: dataRepo.regcourse, stringArray: dataRepo.emptyRegisteredArray, dataRepo: dataRepo)
+                } else {
+                    //FinishedCourses(user: dataRepo.student!)
+                    FinishedCourses(courses: dataRepo.finishedcourse, stringArray: dataRepo.emptyFinishedArray, dataRepo: dataRepo)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding()
+        }//.navigationBarHidden(true)
     }
 }

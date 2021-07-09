@@ -12,7 +12,7 @@ struct CreateSections: View {
     @ObservedObject var dataRepo : dbRepo
     
     var body: some View {
-                
+        
         List {
             Section {
                 ForEach(0 ..< dataRepo.emptyCourseArray.count, id: \.self) { index in
@@ -20,11 +20,10 @@ struct CreateSections: View {
                         Text(dataRepo.courseArray[dataRepo.emptyCourseArray[index]]!!.name)
                     }
                 }
+            }
+        }
     }
 }
 
-    
-    
-    }
-}
+
 

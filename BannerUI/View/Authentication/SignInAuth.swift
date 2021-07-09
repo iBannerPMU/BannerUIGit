@@ -19,9 +19,9 @@ struct SignInAuth: View {
     @ObservedObject var dataRepo: dbRepo
     var LoginVM = LoginViewModel()
     let color = Color.black
-    @Binding var any : String?
-    @State var email : String = ""
-    @State var pass : String = ""
+    @Binding var any: String?
+    @State var email: String = ""
+    @State var pass: String = ""
     @State var db = Firestore.firestore()
     @State var visible = false
     @State var alert = false
@@ -31,7 +31,7 @@ struct SignInAuth: View {
         
         ZStack(alignment: .topTrailing) {
             
-            GeometryReader {_ in
+            GeometryReader { _ in
                 
                 VStack {
                     
@@ -89,7 +89,7 @@ struct SignInAuth: View {
                         
                         LoginVM.login(email: email, password: pass)
                         //print("Login?")
-                        while Auth.auth().currentUser == nil {}
+                        while Auth.auth().currentUser == nil { }
                         dataRepo.authRef = Auth.auth().currentUser!.uid
                         dataRepo.getData()
                         //User data check
@@ -124,15 +124,15 @@ struct SignInAuth: View {
 }
 
 
-struct ErrorView : View {
+struct ErrorView: View {
     
     @State var color = Color.black
-    @Binding var alert : Bool
-    @Binding var error : String
+    @Binding var alert: Bool
+    @Binding var error: String
     
-    var body : some View {
+    var body: some View {
         
-        GeometryReader {_ in
+        GeometryReader { _ in
             
             VStack {
                 

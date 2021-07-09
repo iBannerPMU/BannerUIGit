@@ -20,7 +20,7 @@ struct StudentHomePage: View {
                 NavigationLink(destination: StudentAccounts(dataRepo: dataRepo)) {
                     Text("Student Accounts")
                 }
-                NavigationLink(destination: StudentRecords()){
+                    NavigationLink(destination: StudentRecords(dataRepo: dataRepo)){
                     Text("Student Records")
                     }
                 }

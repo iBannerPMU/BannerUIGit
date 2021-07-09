@@ -1,4 +1,3 @@
-
 import SwiftUI
 import FirebaseAuth
 import Firebase
@@ -19,6 +18,5 @@ class LoginViewModel: ObservableObject{
                 self.LoggedIn = true
             }
         }
-
     }
 }

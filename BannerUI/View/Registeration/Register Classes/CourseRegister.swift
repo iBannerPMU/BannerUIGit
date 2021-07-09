@@ -9,10 +9,21 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
+
+enum ActiveAlert {
+    case first, second
+}
+
 struct CourseRegister: View {
+    
+    @State private var showAlert = false
+    @State private var activeAlert: ActiveAlert = .first
+
     
     var course: Course
     var dataRepo: dbRepo
+    
+    
     
     var body: some View {
         
@@ -22,6 +33,7 @@ struct CourseRegister: View {
             Text("Course ID : \(course.ID)")
             Text("Course Credit Hours : \(course.CreditHour) Hr")
             Text("Course's Major : \(course.Major)")
+            Text("Prerequisite Course Name : \(course.PreReqName)")
             if course.hasPreRequisite == true {
                 Text("This course has a Pre Requisite")
             } else {
@@ -35,29 +47,54 @@ struct CourseRegister: View {
             
         }.padding()
         
-            HStack{
-                Button(action: {dataRepo.registerCourse(courseName: course.name)}) {
-                    Text("Register Course")
-                        .foregroundColor(.white)
-                        .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 250)
-                }
-                .background(Color("Blue"))
-                .cornerRadius(10)
-                .padding(.top)
+            //dataRepo.totalCH = dataRepo.totalCH + course.CreditHour;
                 
-                Button(action: {dataRepo.cartCourses(courseName: course.name)}) {
+            HStack{
+                
+  //              Button(action: {dataRepo.registerCourse(courseName: course.name)}) {
+    //                Text("Register Course")
+      //                  .foregroundColor(.white)
+        //                .padding(.vertical)
+          //              .frame(width: UIScreen.main.bounds.width - 250)
+            //    }
+              //  .background(Color("Blue"))
+                //.cornerRadius(10)
+                //.padding(.top)
+                                
+              
+                Button(action: {  dataRepo.cartCourses(courseName: course.name)
+                    if (dataRepo.totalCH <= 20)
+                    {
+                        self.activeAlert = .first
+                    }
+                    else
+                    {
+                        self.activeAlert = .second
+                    }
+                                self.showAlert = true
+                }) {
                     Text("Add to cart")
                         .foregroundColor(.white)
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 250)
-                }
+                        .alert(isPresented: $showAlert) {
+                                    switch activeAlert {
+                                    case .first:
+                                        return Alert(title: Text("Added To Cart"), message: Text("The course has been added to your cart"))
+                                    case .second:
+                                        return Alert(title: Text("Limit Reached"), message: Text("You have added maximum 20 credit hours to your cart"))
+                                    }
+                                }
                 .background(Color("Blue"))
                 .cornerRadius(10)
                 .padding(.top)
+                    
+                }
+            
+            //Spacer(minLength: 100)
             }
-            Spacer(minLength: 300)
         }
     }
 }
+
 

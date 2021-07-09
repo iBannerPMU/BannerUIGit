@@ -12,32 +12,37 @@ import FirebaseFirestoreSwift
 import Combine
 
 
-class dbRepo : ObservableObject {
-    
+class dbRepo: ObservableObject {
+
     var authRef : String = ""
     let db = Firestore.firestore()
     @Published var student: Student?
     @Published var admin: Admin?
     @Published var course: Course?
+    @Published var regcourse: [Course?] = []
+    @Published var finishedcourse: [Course?] = []
     @Published var financial: Financial?
     @Published var courseArray: [String: Course?] = ["": nil]
     @Published var emptyCourseArray: [String] = []
     @Published var registerArray: [String: Course?] = ["": nil]
     @Published var emptyRegisterArray: [String] = []
-    @Published var cartArray: [String: Course?] = ["": nil]
+    @Published var registeredArray: [Course?] = []
+    @Published var emptyRegisteredArray: [String] = []
+    @Published var emptyFinishedArray: [String] = []
+    @Published var cartArray: [String: Course?] = [:]
     @Published var emptyCartArray: [String] = []
-    @Published var allCourses: [String] = []
-    
-    
+    @Published var totalCH: Int = 0
+
+
     init() {
-        
-        if Auth.auth().currentUser == nil {} else {
+
+        if Auth.auth().currentUser == nil { } else {
             getData()
         }
     }
-    
+
     func clear() {
-        
+
         authRef = ""
         student = nil
         admin = nil
@@ -48,10 +53,10 @@ class dbRepo : ObservableObject {
         emptyRegisterArray = []
         cartArray = ["": nil]
         emptyCartArray = []
-        allCourses = []
-        
+        //allCourses = []
+
     }
-    
+
     func getData() {
         
         authRef = Auth.auth().currentUser!.uid
@@ -62,6 +67,7 @@ class dbRepo : ObservableObject {
                 self.getCourses()
                 self.registerCourses()
                 //self.getFinancialData()
+                self.getRegisteredCourses()
             } else {
                 self.db.collection("Admins").document(self.authRef).getDocument { (doc, err) in
                     if let document = doc, document.exists {
@@ -73,9 +79,9 @@ class dbRepo : ObservableObject {
         }
         
     }
-    
+
     func addData(user: Student) {
-        
+
         Auth.auth().createUser(withEmail: user.universityEmail, password: user.nationalID) { (Result, err) in
             if err == nil {
                 do {
@@ -84,13 +90,56 @@ class dbRepo : ObservableObject {
             }
         }
     }
-    
+
     func registerCourse(courseName : String) {
-        
-        db.collection("Students").document(authRef).updateData(["studentSchedule" : FieldValue.arrayUnion([courseName])])
-        
+        //let courseString = db.collection("Students").document(authRef).collection("FinishedCourses").whereField("name", isEqualTo: courseName)
+        //if (courseString.isEqual(course?.PreReqName)){
+            for c in self.cartArray {
+                let course = c.value
+                print(totalCH)
+                print(course!.name)
+                db.collection("Students").document(authRef).collection("RegisteredCourses").document(course!.name).setData( (course?.toMap())! ) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID")
+                    }
+                }
+            }
+        //}
+        //else{
+          //  print("This course has a Pre Requisite")
+        //}
+        self.getRegisteredCourses()
     }
     
+    func getRegisteredCourses() {
+        
+        db.collection("Students").document(authRef).collection("RegisteredCourses").getDocuments { (docSnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                for document in docSnapshot!.documents {
+                    
+                    let data = document.data()
+                    let id = data["ID"] as? String ?? ""
+                    let Major = data["Major"] as? String ?? ""
+                    let CreditHour = data["CreditHour"] as? Int ?? 0
+                    let hasPreRequisite = data["hasPreRequisite"] as? Bool ?? false
+                    let elective = data["elective"] as? Bool ?? false
+                    let PreReqName = data["PreReqName"] as? String ?? ""
+
+                    
+                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective, PreReqName: PreReqName)
+                    
+                    self.regcourse.append(courseInfo)
+                    self.emptyRegisteredArray.append(courseInfo.name)
+                }
+            }
+        }
+    }
+
 //    func getFinancialData() {
 //        db.collection("Accounts").document(authRef).addSnapshotListener { (document, error) in
 //            if error == nil {
@@ -107,17 +156,17 @@ class dbRepo : ObservableObject {
 //            }
 //        }
 //    }
-    
-    
+
+
     func getStudentData() {
-        
+
         db.collection("Students").document(authRef).addSnapshotListener { (document, error) in
             if error == nil {
                 if let b = document {
                     do {
                         self.student = try b.data(as: Student.self)
                     } catch {
-                        
+
                         let data = document?.data()
                         let fName = data!["fullName"] as? String ?? ""
                         let email = data!["email"] as? String ?? ""
@@ -129,7 +178,7 @@ class dbRepo : ObservableObject {
                         let sYear = data!["startingYear"] as? String ?? ""
                         let uID = data!["universityID"] as? String ?? ""
                         let uEmail = data!["universityEmail"] as? String ?? ""
-                        
+
                         let studentInfo = Student(fullName: fName, email: email, dateOfBirth: DoB, phoneNumber: pNumber, nationalID: nID, startLevel: sLevel, startMajor: sMajor, startingYear: sYear, universityID: uID, universityEmail: uEmail)
                         self.student = studentInfo
                     }
@@ -137,9 +186,9 @@ class dbRepo : ObservableObject {
             } else {
                 print(error?.localizedDescription ?? "Error")
             }
-        } 
+        }
     }
-    
+
     func addCourse(Course: Course) {
         do {
             _ = try db.collection("Courses").addDocument(from: Course)
@@ -147,7 +196,7 @@ class dbRepo : ObservableObject {
             print("Error adding course.")
         }
     }
-    
+
     func addSection(Section: section) {
         do {
             let ref = try db.collection("Sections").addDocument(from: Section)
@@ -156,29 +205,29 @@ class dbRepo : ObservableObject {
             print("Error adding sections.")
         }
     }
-    
-    func updateCourseSections(CourseID: String, SectionID : String) {
+
+    func updateCourseSections(CourseID: String, SectionID: String) {
         let courseDoc = db.collection("Courses").document(CourseID)
-        courseDoc.updateData(["sections" : SectionID])
+        courseDoc.updateData(["sections": SectionID])
     }
-    
+
     func getAdminData() {
-        
+
         db.collection("Admins").document(authRef).addSnapshotListener { (document, error) in
             if error == nil {
                 if let b = document {
                     do {
                         self.admin = try b.data(as: Admin.self)
                     } catch {
-                        
+
                         let data = document?.data()
                         let fName = data!["fullName"] as? String ?? ""
                         let uID = data!["universityID"] as? String ?? ""
                         let uEmail = data!["universityEmail"] as? String ?? ""
                         let pNumber = data!["phoneNumber"] as? String ?? ""
                         let pEmail = data!["email"] as? String ?? ""
-                        
-                        
+
+
                         let adminInfo = Admin(fullName: fName, universityID: uID, universityEmail: uEmail, phoneNumber: pNumber, email: pEmail)
                         self.admin = adminInfo
                     }
@@ -189,7 +238,7 @@ class dbRepo : ObservableObject {
         }
     }
     //.whereField("name", isEqualTo: true).getDocuments
-    
+
     func registerCourses() {
         //getting all courses where major = computer science & all courses
         db.collection("Courses").whereField("Major", isEqualTo: "CS").getDocuments { (docSnapshot, error) in
@@ -205,8 +254,11 @@ class dbRepo : ObservableObject {
                     let CreditHour = data["CreditHour"] as? Int ?? 0
                     let hasPreRequisite = data["hasPreRequisite"] as? Bool ?? false
                     let elective = data["elective"] as? Bool ?? false
+                    let PreReqName = data["PreReqName"] as? String ?? ""
+
+
                     
-                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective)
+                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective, PreReqName: PreReqName)
                     
                     self.course = courseInfo
                     self.registerArray[courseInfo.name] = courseInfo
@@ -215,14 +267,23 @@ class dbRepo : ObservableObject {
             }
         }
     }
-    
+
     func cartCourses(courseName : String) {
         //getting all courses where major = computer science & all courses
+        
+        //let courseString = db.collection("Students").document(authRef).collection("FinishedCourses").whereField("name", isEqualTo: courseName)
+        //if (courseString.isEqual(course?.PreReqName)){
+        
+        self.totalCH = self.totalCH + (course?.CreditHour)!
+        if (totalCH <= 20)
+        {
         db.collection("Courses").whereField("name", isEqualTo: courseName).getDocuments { (docSnapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
             else {
+                    
+                    
                 for document in docSnapshot!.documents {
                     
                     let data = document.data()
@@ -231,18 +292,21 @@ class dbRepo : ObservableObject {
                     let CreditHour = data["CreditHour"] as? Int ?? 0
                     let hasPreRequisite = data["hasPreRequisite"] as? Bool ?? false
                     let elective = data["elective"] as? Bool ?? false
+                    let PreReqName = data["PreReqName"] as? String ?? ""
+
+
                     
-                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective)
+                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective, PreReqName: PreReqName)
                     
                     self.course = courseInfo
                     self.cartArray[courseInfo.name] = courseInfo
                     self.emptyCartArray.append(courseInfo.name)
-                    
                 }
             }
         }
     }
-    
+}
+
     func getCourses() {
         
         db.collection("Courses").getDocuments { (docSnapshot, error) in
@@ -258,8 +322,11 @@ class dbRepo : ObservableObject {
                     let CreditHour = data["CreditHour"] as? Int ?? 0
                     let hasPreRequisite = data["hasPreRequisite"] as? Bool ?? false
                     let elective = data["elective"] as? Bool ?? false
+                    let PreReqName = data["PreReqName"] as? String ?? ""
+
+
                     
-                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective)
+                    let courseInfo = Course(name: document.documentID, CreditHour: CreditHour, ID: id, Major: Major, hasPreRequisite: hasPreRequisite, elective: elective, PreReqName: PreReqName)
                     
                     self.course = courseInfo
                     self.courseArray[courseInfo.name] = courseInfo

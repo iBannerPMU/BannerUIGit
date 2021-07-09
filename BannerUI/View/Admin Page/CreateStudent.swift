@@ -38,8 +38,6 @@ struct CreateStudent: View {
             
             let user = Student(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, nationalID: nationalID, startLevel: startLevel, startMajor: startMajor, startingYear: startingYear, universityID: universityID, universityEmail: universityEmail)
             repo.addData(user: user)
-            
-            print("added")
         }) {
             
             Text("Register")
