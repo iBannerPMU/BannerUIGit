@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct TempRegister: View {
-    
-    
+    @State private var alert = false
     var dataRepo : dbRepo
     var course: Course
     
@@ -36,6 +35,5 @@ struct TempRegister: View {
             
             
         }
-        
     }
 }

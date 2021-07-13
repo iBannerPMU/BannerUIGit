@@ -15,14 +15,14 @@ class Course: ObservableObject, Identifiable, Codable {
     var Major : String = ""
     var hasPreRequisite : Bool = false
     var elective : Bool = false
-    var PreReqName : String = ""
+    var PreReqName : [String] = []
 
     
     init(name: String) {
         self.name = name
     }
     
-    init(name: String, CreditHour: Int, ID: String, Major: String, hasPreRequisite: Bool, elective: Bool, PreReqName: String) {
+    init(name: String, CreditHour: Int, ID: String, Major: String, hasPreRequisite: Bool, elective: Bool, PreReqName: [String]) {
         self.name = name
         self.CreditHour = CreditHour
         self.ID = ID

@@ -27,7 +27,8 @@ struct Registeration: View {
                 } else if selection == 1 {
                     ShowMajors(dataRepo: dataRepo)
                 } else {
-                    RegisterCart(courses: dataRepo.cartArray, tempArray: dataRepo.emptyCartArray, dataRepo: dataRepo)
+                    RegisterCart(noDupArray: dataRepo.emptyCartArray, courses: dataRepo.cartArray, tempArray: dataRepo.emptyCartArray, dataRepo: dataRepo)
+                    //RegisterCart(courses: dataRepo.cartArray, tempArray: dataRepo.emptyCartArray, dataRepo: dataRepo)
                 }
                 Spacer(minLength: 0)
             }

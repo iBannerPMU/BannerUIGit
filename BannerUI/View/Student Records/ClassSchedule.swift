@@ -35,7 +35,7 @@ struct ClassSchedule: View {
                         Text("Course ID : \(regcourse.ID)")
                         Text("Course Credit Hours : \(regcourse.CreditHour) Hr")
                         Text("Course's Major : \(regcourse.Major)")
-                        Text("Prerequisite Course Name : \(regcourse.PreReqName)")
+                        Text("Prerequisite Course Name : \(regcourse.PreReqName[0])")
                             
                         if regcourse.hasPreRequisite == true {
                             Text("This course has a Pre Requisite")

@@ -38,7 +38,7 @@ struct FinishedCourses: View {
                         Text("Course ID : \(finishedcourse.ID)")
                         Text("Course Credit Hours : \(finishedcourse.CreditHour) Hr")
                         Text("Course's Major : \(finishedcourse.Major)")
-                        Text("Prerequisite Course Name : \(finishedcourse.PreReqName)")
+                        Text("Prerequisite Course Name : \(finishedcourse.PreReqName.joined(separator: ", "))")
                             
                             
                     }.padding()
