@@ -10,7 +10,7 @@ import SwiftUI
 struct StudentRecords: View {
     var dataRepo: dbRepo
     @State var selection = 0
-    private let items: [String] = ["ViewHolds", "AcademicTranscript", "Class Schedule", "Finished Courses"]
+    private let items: [String] = ["AcademicTranscript", "Class Schedule"]
 
     var body: some View {
         ZStack {
@@ -29,7 +29,7 @@ struct StudentRecords: View {
                     ClassSchedule(courses: dataRepo.regcourse, stringArray: dataRepo.emptyRegisteredArray, dataRepo: dataRepo)
                 } else {
                     //FinishedCourses(user: dataRepo.student!)
-                    FinishedCourses(courses: dataRepo.finishedcourse, stringArray: dataRepo.emptyFinishedArray, dataRepo: dataRepo)
+                    //FinishedCourses(courses: dataRepo.finishedcourse, stringArray: dataRepo.emptyFinishedArray, dataRepo: dataRepo)
                 }
                 Spacer(minLength: 0)
             }

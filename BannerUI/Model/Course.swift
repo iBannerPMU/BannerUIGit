@@ -6,40 +6,47 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 class Course: ObservableObject, Identifiable, Codable {
     
     var name : String = ""
-    var CreditHour : Int!
-    var ID : String = ""
+    var CreditHour : String = ""
+    @DocumentID var ID : String?
     var Major : String = ""
-    var hasPreRequisite : Bool = false
+    var hasPreRequisite : Bool {
+        if PreReqName == [] {
+        return false
+        } else {
+        return true
+        }
+    }
     var elective : Bool = false
-    var PreReqName : String = ""
+    var PreReqName : [String] = []
+    var numOfStudents : Int?
 
     
     init(name: String) {
         self.name = name
     }
     
-    init(name: String, CreditHour: Int, ID: String, Major: String, hasPreRequisite: Bool, elective: Bool, PreReqName: String) {
+    init(numberOfStudents : Int) {
+        self.numOfStudents = numberOfStudents
+    }
+    
+    init(name: String, CreditHour: String, Major: String, PreReqName: String) {
         self.name = name
         self.CreditHour = CreditHour
-        self.ID = ID
         self.Major = Major
-        self.hasPreRequisite = hasPreRequisite
-        self.elective = elective
-        self.PreReqName = PreReqName
+        self.PreReqName.append(PreReqName)
         
-
-
     }
     //toMap() is a func. that will return an object with the course name and it's details
     func toMap() -> Dictionary<String, Any> {
         return [
             "name": self.name,
             "CreditHour": self.CreditHour as Any,
-            "ID": self.ID,
+            //"ID": self.ID,
             "Major": self.Major,
             "hasPreRequisite": self.hasPreRequisite,
             "elective": self.elective,

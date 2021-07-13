@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         var dataRepo = dbRepo()
-        let contentView = StudentHomePage(dataRepo: dataRepo)
+        let contentView = HomePage(dataRepo: dataRepo)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

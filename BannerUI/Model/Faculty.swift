@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 class Faculty: ObservableObject, Identifiable, Codable {
     
@@ -13,9 +14,10 @@ class Faculty: ObservableObject, Identifiable, Codable {
     var firstName : String = ""
     var email : String = ""
     var dateOfBirth : String = ""
-    var ID : String = ""
+    @DocumentID var ID : String?
     var phoneNumber : String = ""
     var universityEmail : String = ""
+    var major : String = ""
     var facultySchedule : [String] = []
     var currentCourses : [String] = []
     var finishedCourses : [String] = []
@@ -38,7 +40,7 @@ class Faculty: ObservableObject, Identifiable, Codable {
     
     
     
-    init(fullName: String, email: String, dateOfBirth: String, phoneNumber: String, ID: String, universityEmail: String) {
+    init(fullName: String, email: String, dateOfBirth: String, phoneNumber: String, ID: String, universityEmail: String, major: String) {
 
         self.fullName = fullName
         self.email = email
@@ -46,6 +48,7 @@ class Faculty: ObservableObject, Identifiable, Codable {
         self.dateOfBirth = dateOfBirth
         self.phoneNumber = phoneNumber
         self.universityEmail = universityEmail
+        self.major = major
         
     }
     

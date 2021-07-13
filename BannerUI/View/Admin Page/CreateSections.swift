@@ -9,15 +9,15 @@ import SwiftUI
 
 struct CreateSections: View {
     
-    @ObservedObject var dataRepo : dbRepo
+    @ObservedObject var repo : dbRepo
     
     var body: some View {
         
         List {
             Section {
-                ForEach(0 ..< dataRepo.emptyCourseArray.count, id: \.self) { index in
-                    NavigationLink(destination: courseInfo(course: dataRepo.courseArray[dataRepo.emptyCourseArray[index]]!!, dataRepo: dataRepo)) {
-                        Text(dataRepo.courseArray[dataRepo.emptyCourseArray[index]]!!.name)
+                ForEach(0 ..< repo.emptyCourseArray.count, id: \.self) { index in
+                    NavigationLink(destination: courseInfo(course: repo.courseArray[repo.emptyCourseArray[index]]!!, dataRepo: repo)) {
+                        Text(repo.courseArray[repo.emptyCourseArray[index]]!!.name)
                     }
                 }
             }

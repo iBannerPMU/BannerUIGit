@@ -30,10 +30,10 @@ struct CourseRegister: View {
         VStack {
         List {
             Text("Course Name : \(course.name)")
-            Text("Course ID : \(course.ID)")
             Text("Course Credit Hours : \(course.CreditHour) Hr")
             Text("Course's Major : \(course.Major)")
-            Text("Prerequisite Course Name : \(course.PreReqName)")
+            // for loop and check if the list empty first
+            //Text("Prerequisite Course Name : \(course.PreReqName)")
             if course.hasPreRequisite == true {
                 Text("This course has a Pre Requisite")
             } else {

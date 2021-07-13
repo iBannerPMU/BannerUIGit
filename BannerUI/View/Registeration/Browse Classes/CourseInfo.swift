@@ -10,14 +10,13 @@ import SwiftUI
 struct courseInfo: View {
     
     var course: Course
+    //var faculty
     var dataRepo: dbRepo
     
     
     var body: some View {
-        
         List {
             Text("Course Name : \(course.name)")
-            Text("Course Name : \(course.ID)")
             Text("Course Credit Hours : \(course.CreditHour) Hr")
             Text("Course's Major : \(course.Major)")
             if course.hasPreRequisite == true {
@@ -31,14 +30,8 @@ struct courseInfo: View {
                 Text("This course is an Elective")
             }
         }.padding()
-        
-        if((dataRepo.admin) != nil) {
-            Button(action: {
-                dataRepo.addSection(Section: section.init(CRN: "111", Instructor: "Someone", InstructorID: "123", sectionNumber: "101", Semester: "Spring", year: "2030", startTime: "15:45", endTime: "20:20", courseID: "Algorithms"))
-            }) {
-                Text("Add Sections")
-            }
+        NavigationLink(destination: Sections(dataRepo: dataRepo)){
+            Text("Add Sections")
         }
     }
 }
-

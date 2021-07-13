@@ -18,7 +18,6 @@ struct TempRegister: View {
         VStack {
             List {
                 Text("Course Name : \(course.name)")
-                Text("Course Name : \(course.ID)")
                 Text("Course Credit Hours : \(course.CreditHour) Hr")
                 Text("Course's Major : \(course.Major)")
                 if course.hasPreRequisite == true {

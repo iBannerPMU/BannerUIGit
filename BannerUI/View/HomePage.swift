@@ -1,38 +1,46 @@
 import SwiftUI
 import FirebaseAuth
 
-struct StudentHomePage: View {
+struct HomePage: View {
     
     @ObservedObject var dataRepo : dbRepo
     @State var showView : String? = nil
-
+    
     var body: some View {
         
         NavigationView{
-            VStack (alignment: .center, spacing: 40) {
+            VStack (alignment: .center, spacing: 20) {
                 NavigationLink(destination: Information(dataRepo: dataRepo)){
                     Text("Information")
                 }
                 if((dataRepo.student) != nil){
-                NavigationLink(destination: Registeration(dataRepo: dataRepo)){
-                    Text("Registeration")
-                }
-                NavigationLink(destination: StudentAccounts(dataRepo: dataRepo)) {
-                    Text("Student Accounts")
-                }
+                    NavigationLink(destination: Registeration(dataRepo: dataRepo)){
+                        Text("Registeration")
+                    }
                     NavigationLink(destination: StudentRecords(dataRepo: dataRepo)){
-                    Text("Student Records")
+                        Text("Student Records")
                     }
                 }
                 if((dataRepo.admin) != nil){
-                NavigationLink(destination: CreateStudent(repo: dataRepo)){
-                    Text("Create Student")
+                    NavigationLink(destination: CreateStudent(repo: dataRepo)){
+                        Text("Create Student")
                     }
-                    NavigationLink(destination: CreateSections(dataRepo: dataRepo)){
-                    Text("Add Sections")
+                    NavigationLink(destination: CreateFaculty(repo: dataRepo)){
+                        Text("Create Faculty")
+                    }
+                    NavigationLink(destination: CreateCourse(repo: dataRepo)){
+                        Text("Create Course")
+                    }
+                    NavigationLink(destination: CreateSections(repo: dataRepo)){
+                        Text("Create Sections")
                     }.onDisappear{dataRepo.getCourses()}
-
                 }
+                if((dataRepo.faculty) != nil){
+                    NavigationLink(destination: courseGrading(repo: dataRepo)){
+                        Text("Course Grading")
+                    }
+                }
+                
                 
                 NavigationLink(destination: SignInAuth(dataRepo: dataRepo, any: $showView), tag:"Login", selection: $showView) {
                 }
@@ -54,7 +62,7 @@ struct StudentHomePage: View {
             if Auth.auth().currentUser == nil {
                 self.showView = "Login"
             } else {
-                if((dataRepo.student) != nil || (dataRepo.admin) != nil ){
+                if((dataRepo.student) != nil || (dataRepo.admin) != nil || (dataRepo.faculty) != nil ){
                     print("Data existed, Logged in")
                 }
                 else {

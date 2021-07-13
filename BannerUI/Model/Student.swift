@@ -22,7 +22,7 @@ class Student: ObservableObject, Identifiable, Codable {
     var startingYear : String = ""
     var GPA : Double = 0.00
     var studentSchedule : [String] = []
-    var FinishedCourses : [String] = []
+    //var FinishedCourses : [String] = []
     // attendence : int = 0 , with every absent it increment until 9 absents if the course is 3 hour credit.
     // check only the preRequisit connected to the rigistered course
     

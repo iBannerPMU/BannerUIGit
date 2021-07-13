@@ -24,11 +24,11 @@ struct CreateStudent: View {
             Form {
                 TextField("Full name", text: $fullName)
                 TextField("Date of birth", text: $dateOfBirth)
-                TextField("National ID", text: $nationalID)
+                TextField("ID", text: $nationalID)
                 TextField("Phone Number", text: $phoneNumber)
                 TextField("Email", text: $email)
-                TextField("University ID", text: $universityID)
                 TextField("University Email", text: $universityEmail)
+                TextField("University ID", text: $universityID)
                 TextField("Starting Level", text: $startLevel)
                 TextField("Starting Major", text: $startMajor)
                 TextField("Starting Year", text: $startingYear)
@@ -37,7 +37,7 @@ struct CreateStudent: View {
         Button(action: {
             
             let user = Student(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, nationalID: nationalID, startLevel: startLevel, startMajor: startMajor, startingYear: startingYear, universityID: universityID, universityEmail: universityEmail)
-            repo.addData(user: user)
+            repo.addStudentData(user: user)
         }) {
             
             Text("Register")
