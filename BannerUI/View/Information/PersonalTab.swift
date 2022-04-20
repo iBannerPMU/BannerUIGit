@@ -11,40 +11,36 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 
-//class personalInfoModel: ObservableObject {
-//
-//    private var db = Firestore.firestore()
-//    private var authRef = (Auth.auth().currentUser?.uid)!
-//
-//}
-
 struct PersonalTab: View {
     
     @ObservedObject var dataRepo: dbRepo
     
     var body: some View {
-        //List(viewModel.studentInfo) { studentInformation in
-            VStack {
-                
-                if((dataRepo.student) != nil){
-                    let user = dataRepo.student! as Student
-                    Text(user.fullName)
-                    Text(user.nationalID)
-                    Text(user.dateOfBirth)
-                    Text(user.email)
-                    Text(user.phoneNumber)
-                } else if ((dataRepo.admin) != nil){
-                    let user = dataRepo.admin! as Admin
-                    Text(user.fullName)
-                    Text(user.universityEmail)
-                    Text(user.universityID)
-                    Text(user.email)
-                    Text(user.phoneNumber)
-                }
-                
-
+        VStack(spacing: 30) {
+            
+            if((dataRepo.student) != nil){
+                let user = dataRepo.student! as Student
+                Text("Full Name: " + user.fullName).bold()
+                Text("National ID: " + user.nationalID).bold()
+                Text("Date Of Birth: " + user.dateOfBirth).bold()
+                Text("Email: " + user.email).bold()
+                Text("Phone Number: " + user.phoneNumber).bold()
+            } else if ((dataRepo.admin) != nil){
+                let user = dataRepo.admin! as Admin
+                Text("Full Name: " + user.fullName).bold()
+                Text("University Email: " + user.universityEmail).bold()
+                Text("University ID: " + user.universityID).bold()
+                Text("University Email: " + user.email).bold()
+                Text("Phone Number: " + user.phoneNumber).bold()
+            } else {
+                let user = dataRepo.faculty! as Faculty
+                Text("Full Name: " + user.fullName).bold()
+                Text("Email: " + user.email).bold()
+                Text("Full Name: " + user.dateOfBirth).bold()
+                Text("Phone Number: " + user.phoneNumber).bold()
+                Text("University Email: " + user.universityEmail).bold()
                 
             }
-        }
-        
+        }.font(.system(size: 22))
     }
+}

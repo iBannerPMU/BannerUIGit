@@ -8,9 +8,9 @@ class LoginViewModel: ObservableObject{
     var email = ""
     var password = ""
     var LoggedIn = false
-
+    
     func login(email: String, password: String){
-
+        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let e = error {
                 print(e)

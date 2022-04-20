@@ -17,8 +17,8 @@ struct HomePage: View {
                     NavigationLink(destination: Registeration(dataRepo: dataRepo)){
                         Text("Registeration")
                     }
-                    NavigationLink(destination: StudentRecords(dataRepo: dataRepo)){
-                        Text("Student Records")
+                    NavigationLink(destination: ClassSchedule(dataRepo: dataRepo)){
+                        Text("Schedule")
                     }
                 }
                 if((dataRepo.admin) != nil){
@@ -28,12 +28,12 @@ struct HomePage: View {
                     NavigationLink(destination: CreateFaculty(repo: dataRepo)){
                         Text("Create Faculty")
                     }
-                    NavigationLink(destination: CreateCourse(repo: dataRepo)){
+                    NavigationLink(destination: CreateCourse(dataRepo: dataRepo)){
                         Text("Create Course")
                     }
                     NavigationLink(destination: CreateSections(repo: dataRepo)){
                         Text("Create Sections")
-                    }.onDisappear{dataRepo.getCourses()}
+                    }
                 }
                 if((dataRepo.faculty) != nil){
                     NavigationLink(destination: courseGrading(repo: dataRepo)){
@@ -56,7 +56,8 @@ struct HomePage: View {
                 }) {
                     Text("Logout")
                 }
-            }
+            }.navigationTitle("Home Page")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear() {
             if Auth.auth().currentUser == nil {
@@ -67,7 +68,6 @@ struct HomePage: View {
                 }
                 else {
                     print("Getting Data")
-                    dataRepo.getData()
                 }
             }
         }

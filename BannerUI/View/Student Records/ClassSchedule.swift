@@ -11,46 +11,33 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 
-class ClassScheduleInfo: ObservableObject {
-    
-    private var db = Firestore.firestore()
-    private var authRef = (Auth.auth().currentUser?.uid)!
-    
-}
+
 
 struct ClassSchedule: View {
     
-    var courses: [Course?]
-    var stringArray: [String]
-    var dataRepo: dbRepo
+    @ObservedObject var dataRepo: dbRepo
     var scheduleCH: Int = 0
     
+    var course: Course?
+    
+    @State private var showAlert = false
+    @State private var activeAlert: ActiveAlert = .first
+    
     var body: some View {
-
-        Text("Total Credit hours: \(dataRepo.totalCH)")
-                ForEach(courses as! [Course]) { regcourse in
-                    List{
-                        Section {
-                        Text("Course Name : \(regcourse.name)")
-                        Text("Course Credit Hours : \(regcourse.CreditHour) Hr")
-                        Text("Course's Major : \(regcourse.Major)")
-                        //Text("Prerequisite Course Name : \(regcourse.PreReqName)")
-                            
-                        if regcourse.hasPreRequisite == true {
-                            Text("This course has a Pre Requisite")
-                        } else {
-                            Text("This course does not have a Pre Requisite")
+        VStack {
+            //Text("Totoal Credit Hours:" + dataRepo.totalCH)
+            List {
+                ForEach(0 ..< dataRepo.regSecs.count, id: \.self) {index in
+                    Section{
+                        NavigationLink(destination: sectionInfo(SectionDetails: dataRepo.regSecs[index], course: dataRepo.courseArray[dataRepo.regSecs[index].courseID]!!)){
+                            Text(dataRepo.courseArray[dataRepo.regSecs[index].courseID]!!.name)
                         }
-                        if regcourse.elective == true {
-                            Text("This course is not an Elective")
-                        } else {
-                            Text("This course is an Elective")
-                        }
-
-                    }.padding()
+                    }
                 }
             }
-        }
+        }.navigationTitle("Student Schedule")
+        .navigationBarTitleDisplayMode(.inline)
     }
+}
 
 

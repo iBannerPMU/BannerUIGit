@@ -23,29 +23,29 @@ func removeDuplicates(array: [String]) -> [String] {
     }
     return result
 }
+
 struct RegisterCart: View {
+    
     @State private var alert = false
+    @Binding var sections: [String: section?]
+    @Binding var tempArray: [String]
+    @ObservedObject var dataRepo : dbRepo
+    @Binding var Globalcourse: [String: Course]
     
-    var courses: [String: Course?]
-    var tempArray: [String]
-    var dataRepo : dbRepo
-    //var course: Course
-    
-   
     var body: some View {
         
         let noDupArray : [String] = removeDuplicates(array: tempArray)
-
+        //Text("Totoal Credit Hours:", dataRepo.totalCH)
         List {
             Section {
                 ForEach(0 ..< noDupArray.count) { index in
-                    NavigationLink(destination: TempRegister(dataRepo: dataRepo, course: courses[noDupArray[index]]!!)) {
-                        Text(courses[noDupArray[index]]!!.name)
+                    NavigationLink(destination: TempRegister(dataRepo: dataRepo, section: sections[tempArray[index]]!!, courseID: sections[tempArray[index]]!!.courseID)) {
+                        Text(Globalcourse[(sections[tempArray[index]]!?.id)!]!.name)
                     }
                 }
             }
         }
-        Button(action: { self.alert = true; dataRepo.registerCourse(courseName: dataRepo.course!.name)}) {
+        Button(action: { self.alert = true; dataRepo.registerCourse(sectionIDs: tempArray, sections: sections )}) {
             Text("Submit Courses")
                 .foregroundColor(.white)
                 .padding(.vertical)
@@ -57,6 +57,5 @@ struct RegisterCart: View {
         .background(Color("Blue"))
         .cornerRadius(10)
         .padding(.top)
-        //Spacer(minLength: 200)
     }
 }

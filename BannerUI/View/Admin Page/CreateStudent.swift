@@ -33,7 +33,9 @@ struct CreateStudent: View {
                 TextField("Starting Major", text: $startMajor)
                 TextField("Starting Year", text: $startingYear)
             }
-        }.padding()
+        }.navigationTitle("Create Student")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
         Button(action: {
             
             let user = Student(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, nationalID: nationalID, startLevel: startLevel, startMajor: startMajor, startingYear: startingYear, universityID: universityID, universityEmail: universityEmail)

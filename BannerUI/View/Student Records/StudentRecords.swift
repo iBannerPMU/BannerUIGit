@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct StudentRecords: View {
-    var dataRepo: dbRepo
+    @ObservedObject var dataRepo: dbRepo
     @State var selection = 0
     private let items: [String] = ["AcademicTranscript", "Class Schedule"]
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -20,20 +20,9 @@ struct StudentRecords: View {
                         Text(self.items[index]).tag(index)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
-                if selection == 0 {
-                    //ViewHolds(dataRepo: dataRepo)
-                } else if selection == 1 {
-                    //AcademicTranscript(dataRepo: dataRepo)
-                } else if selection == 2 {
-                    //ClassSchedule(user: dataRepo.student!)
-                    ClassSchedule(courses: dataRepo.regcourse, stringArray: dataRepo.emptyRegisteredArray, dataRepo: dataRepo)
-                } else {
-                    //FinishedCourses(user: dataRepo.student!)
-                    //FinishedCourses(courses: dataRepo.finishedcourse, stringArray: dataRepo.emptyFinishedArray, dataRepo: dataRepo)
-                }
-                Spacer(minLength: 0)
             }
             .padding()
-        }//.navigationBarHidden(true)
+        }.navigationTitle("Student Records")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

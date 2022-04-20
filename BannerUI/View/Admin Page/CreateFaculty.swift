@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateFaculty: View {
-        
+    
     @ObservedObject var repo: dbRepo
     
     @State var fullName : String = ""
@@ -19,7 +19,7 @@ struct CreateFaculty: View {
     @State var universityEmail : String = ""
     @State var major : String = ""
     
-
+    
     var body: some View {
         
         VStack {
@@ -30,13 +30,14 @@ struct CreateFaculty: View {
                 TextField("Phone Number", text: $phoneNumber)
                 TextField("Email", text: $email)
                 TextField("University Email", text: $universityEmail)
-                TextField("University Email", text: $major)
                 
             }
-        }.padding()
+        }.navigationTitle("Create Faculty")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
         Button(action: {
             
-            let user = Faculty(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, ID: ID, universityEmail: universityEmail, major: major)
+            let user = Faculty(fullName: fullName, email: email, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, ID: ID, universityEmail: universityEmail)
             repo.addFacultyData(user: user)
         }) {
             

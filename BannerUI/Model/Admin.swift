@@ -25,5 +25,5 @@ class Admin: ObservableObject, Identifiable, Codable {
         self.phoneNumber = phoneNumber
         self.email = email
     }
-
+    
 }

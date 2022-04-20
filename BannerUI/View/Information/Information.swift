@@ -31,6 +31,8 @@ struct Information: View {
                 Spacer(minLength: 0)
             }
             .padding()
-        }//.navigationBarHidden(true)
+        }.navigationTitle("Student Information")
+        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarHidden(true)
     }
 }

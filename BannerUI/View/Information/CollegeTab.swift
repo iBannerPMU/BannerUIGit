@@ -21,28 +21,34 @@ class studentInfoModel: ObservableObject {
 struct CollegeTab: View {
     
     @ObservedObject var dataRepo: dbRepo
-
+    
     var body: some View {
         
-        VStack {
+        VStack(spacing: 30) {
             
             if((dataRepo.student) != nil){
                 let user = dataRepo.student! as Student
-                Text(user.fullName)
-                Text(user.universityID)
-                Text(user.universityEmail)
-                Text(user.startLevel)
-                Text(user.startMajor)
-                Text(user.startingYear)
-            } else {
+                Text("Full Name: " + user.fullName).bold()
+                Text("University ID: " + user.universityID).bold()
+                Text("University Email: " + user.universityEmail).bold()
+                Text("Start Level: " + user.startLevel).bold()
+                Text("Start Major: " + user.startMajor).bold()
+                Text("Starting Year: " + user.startingYear).bold()
+            } else if ((dataRepo.admin) != nil) {
                 let user = dataRepo.admin! as Admin
-                Text(user.fullName)
-                Text(user.universityID)
-                Text(user.universityEmail)
+                Text("Full Name: " + user.fullName).bold()
+                Text("University ID: " + user.universityID).bold()
+                Text("University Email: " + user.universityEmail).bold()
             }
-            
-            
-            
-        }
+            else {
+                let user = dataRepo.faculty! as Faculty
+                Text("Full Name: " + user.fullName).bold()
+                Text("Email: " + user.email).bold()
+                Text("Date Of Birth: " + user.dateOfBirth).bold()
+                Text("Phone Number: " + user.phoneNumber).bold()
+                Text("University Email: " + user.universityEmail).bold()
+                
+            }
+        }.font(.system(size: 22))
     }
 }

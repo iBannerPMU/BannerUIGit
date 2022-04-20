@@ -13,7 +13,6 @@ import FirebaseAuth
 struct SignInAuth: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    //self.presentationMode.wrappedValue.dismiss()
     
     
     @ObservedObject var dataRepo: dbRepo
@@ -76,7 +75,21 @@ struct SignInAuth: View {
                         Spacer()
                         
                         Button(action: {
-                            
+                            if self.email != "" {
+                                Auth.auth().sendPasswordReset(withEmail: self.email) { error in
+                                    if error != nil {
+                                        self.error = error!.localizedDescription
+                                        self.alert.toggle()
+                                        return
+                                    }
+                                    self.error = "RESET"
+                                    self.alert.toggle()
+                                }
+                            }
+                            else {
+                                self.error = "ID is empty."
+                                self.alert.toggle()
+                            }
                         }) {
                             Text("Forget Password")
                                 .fontWeight(.bold)
@@ -84,15 +97,12 @@ struct SignInAuth: View {
                         }
                     }
                     .padding(.top, 20)
-                    
                     Button(action: {
                         
                         LoginVM.login(email: email, password: pass)
-                        //print("Login?")
                         while Auth.auth().currentUser == nil { }
                         dataRepo.authRef = Auth.auth().currentUser!.uid
                         dataRepo.getData()
-                        //User data check
                         self.presentationMode.wrappedValue.dismiss()
                         
                     }) {
@@ -107,9 +117,7 @@ struct SignInAuth: View {
                     .padding(.top, 25)
                 }
                 .padding(.horizontal, 25)
-                
             }
-            
         }
         .navigationBarTitle("Something")
         .navigationBarHidden(true)
@@ -138,7 +146,7 @@ struct ErrorView: View {
                 
                 HStack {
                     
-                    Text("Error")
+                    Text("")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(self.color)
@@ -172,11 +180,5 @@ struct ErrorView: View {
             .cornerRadius(15)
         }
         .background(Color.black.opacity(0.35).edgesIgnoringSafeArea(.all))
-    }
-}
-
-struct SignInAuth_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

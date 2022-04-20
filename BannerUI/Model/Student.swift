@@ -22,28 +22,18 @@ class Student: ObservableObject, Identifiable, Codable {
     var startingYear : String = ""
     var GPA : Double = 0.00
     var studentSchedule : [String] = []
-    //var FinishedCourses : [String] = []
-    // attendence : int = 0 , with every absent it increment until 9 absents if the course is 3 hour credit.
-    // check only the preRequisit connected to the rigistered course
-    
     
     
     init(firstName: String) {
-        
         self.firstName = firstName
-        
     }
     
     init(studentSchedule : [String]) {
-        
         self.studentSchedule = studentSchedule
-        
     }
     
-    
-    
     init(fullName: String, email: String, dateOfBirth: String, phoneNumber: String, nationalID: String, startLevel: String, startMajor: String, startingYear: String, universityID: String, universityEmail: String) {
-
+        
         self.fullName = fullName
         self.email = email
         self.nationalID = nationalID
@@ -58,7 +48,7 @@ class Student: ObservableObject, Identifiable, Codable {
     }
     
     init(fullName: String, email: String, dateOfBirth: String, phoneNumber: String, nationalID: String) {
-
+        
         self.fullName = fullName
         self.email = email
         self.nationalID = nationalID
@@ -73,7 +63,7 @@ class Student: ObservableObject, Identifiable, Codable {
         self.startMajor = startMajor
         self.startingYear = startingYear
         self.universityEmail = universityEmail
-
+        
     }
-
+    
 }

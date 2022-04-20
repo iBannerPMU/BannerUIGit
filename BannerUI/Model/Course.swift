@@ -11,20 +11,20 @@ import FirebaseFirestoreSwift
 class Course: ObservableObject, Identifiable, Codable {
     
     var name : String = ""
-    var CreditHour : String = ""
-    @DocumentID var ID : String?
+    var CreditHour : Int = 0
+    @DocumentID var id : String?
     var Major : String = ""
     var hasPreRequisite : Bool {
         if PreReqName == [] {
-        return false
+            return false
         } else {
-        return true
+            return true
         }
     }
     var elective : Bool = false
     var PreReqName : [String] = []
     var numOfStudents : Int?
-
+    
     
     init(name: String) {
         self.name = name
@@ -34,7 +34,7 @@ class Course: ObservableObject, Identifiable, Codable {
         self.numOfStudents = numberOfStudents
     }
     
-    init(name: String, CreditHour: String, Major: String, PreReqName: String) {
+    init(name: String, CreditHour: Int, Major: String, PreReqName: String) {
         self.name = name
         self.CreditHour = CreditHour
         self.Major = Major
@@ -46,7 +46,7 @@ class Course: ObservableObject, Identifiable, Codable {
         return [
             "name": self.name,
             "CreditHour": self.CreditHour as Any,
-            //"ID": self.ID,
+            "ID": Course.ID.self,
             "Major": self.Major,
             "hasPreRequisite": self.hasPreRequisite,
             "elective": self.elective,

@@ -8,8 +8,9 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-class section : Codable {
-
+class section : Codable , ObservableObject {
+    
+    @DocumentID var id : String?
     var CRN : String = ""
     var Instructor : String = ""
     var InstructorID : String = ""
@@ -23,16 +24,16 @@ class section : Codable {
     var courseID : String = ""
     
     init(CRN: String, Instructor: String, InstructorID: String, sectionNumber: String, Semester: String, year: String, startTime: String, endTime: String, courseID: String) {
-
-            self.CRN = CRN
-            self.Instructor = Instructor
-            self.InstructorID = InstructorID
-            self.sectionNumber = sectionNumber
-            self.Semester = Semester
-            self.year = year
-            self.startTime = startTime
-            self.endTime = endTime
-            self.courseID = courseID
+        
+        self.CRN = CRN
+        self.Instructor = Instructor
+        self.InstructorID = InstructorID
+        self.sectionNumber = sectionNumber
+        self.Semester = Semester
+        self.year = year
+        self.startTime = startTime
+        self.endTime = endTime
+        self.courseID = courseID
         
     }
     
